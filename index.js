@@ -31,7 +31,7 @@ const port = 3000;
 app.set("trust proxy", 1); // Trust the first proxy
 
 app.use(morgan("dev"));
-app.use(express.json());
+app.use(express.json({ limit: "2mb" }));
 
 app.use((req, res, next) => {
   const protocol = req.get("X-Forwarded-Proto") || req.protocol;
