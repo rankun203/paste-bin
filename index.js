@@ -1,5 +1,6 @@
 const express = require("express");
 const Redis = require("ioredis");
+const cors = require("cors");
 const { nanoid } = require("nanoid");
 const morgan = require("morgan");
 
@@ -30,6 +31,7 @@ const port = 3000;
 
 app.set("trust proxy", 1); // Trust the first proxy
 
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json({ limit: "2mb" }));
 
