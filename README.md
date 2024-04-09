@@ -1,6 +1,6 @@
 # Paste Bin
 
-This tool is not meant for permanent content hosting, in fact it only keeps the data for 60s
+This tool is not meant for permanent content hosting, in fact it only keeps the data for 10min
 
 No requests are logged, ever.
 
