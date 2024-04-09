@@ -4,6 +4,20 @@ const cors = require("cors");
 const { nanoid } = require("nanoid");
 const morgan = require("morgan");
 
+const env = (key, _default) => {
+  const value = process.env[key];
+  if (value === undefined) {
+    if (_default === undefined) {
+      throw new Error(`Missing required env var: ${key}`);
+    }
+    return _default;
+  }
+  return value;
+};
+
+const REDIS_EX_BIN_KEY = Number(env(REDIS_EX_BIN_KEY, "60")); // default to 60s
+console.log("REDIS_EX_BIN_KEY:", REDIS_EX_BIN_KEY);
+
 const redis = new Redis(6379, "redis");
 // Check if Redis connection is successful
 redis.on("ready", () => {
@@ -18,7 +32,7 @@ redis.on("error", (error) => {
 
 const setData = async (data) => {
   const id = nanoid();
-  await redis.set(`bin:${id}`, data, "EX", 36000);
+  await redis.set(`bin:${id}`, data, "EX", REDIS_EX_BIN_KEY);
   return id;
 };
 
