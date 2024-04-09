@@ -15,7 +15,7 @@ const env = (key, _default) => {
   return value;
 };
 
-const REDIS_EX_BIN_KEY = Number(env(REDIS_EX_BIN_KEY, "60")); // default to 60s
+const REDIS_EX_BIN_KEY = Number(env('REDIS_EX_BIN_KEY', "60")); // default to 60s
 console.log("REDIS_EX_BIN_KEY:", REDIS_EX_BIN_KEY);
 
 const redis = new Redis(6379, "redis");
