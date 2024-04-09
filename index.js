@@ -18,7 +18,7 @@ redis.on("error", (error) => {
 
 const setData = async (data) => {
   const id = nanoid();
-  await redis.set(`bin:${id}`, data, "EX", 600);
+  await redis.set(`bin:${id}`, data, "EX", 36000);
   return id;
 };
 
